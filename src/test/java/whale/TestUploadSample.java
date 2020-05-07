@@ -9,7 +9,7 @@ public class TestUploadSample {
 	private static UploadLoggerTestUtil log =
 			new UploadLoggerTestUtil();
 	
-	private static String path = "apk/202005071022/";
+	private static String path = "apk/202005071549/";
 	private static String file = "C:/devtools/upload/apk/app-assistant-release.apk";
 	
 	public static void main(String[] args){

@@ -7,9 +7,9 @@ public class UploadConfig {
 
 	public static final String API_DEFAULT =
 //			"http://dev-apis.qianbao.com/basicservice/v1/intranet/filer";
-//	        "http://172.17.15.194:9330/filer";
+	        "http://172.17.15.194:9330/filer";
 //	        "http://loan.qianbao.com/file/weed.do";
-	        "http://apis.qianbao.com/basicservice/v1/intranet/filer";
+//	        "http://apis.qianbao.com/basicservice/v1/intranet/filer";
 	
 	public static final String UNI_SOURCE_DEFAULT = "whale-dev/APK";
 	
