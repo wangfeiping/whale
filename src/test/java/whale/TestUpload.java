@@ -17,9 +17,9 @@ public class TestUpload {
 
 	private static String[] files = {
 		"D:/workspace/seaweedfs/test/t01.png",
-		"D:/workspace/seaweedfs/test/t02.jpg",
-		"D:/workspace/seaweedfs/test/t03.xlsx",
-		"D:/workspace/seaweedfs/test/h01.zip"
+//		"D:/workspace/seaweedfs/test/t02.jpg",
+//		"D:/workspace/seaweedfs/test/t03.xlsx",
+//		"D:/workspace/seaweedfs/test/h01.zip"
 //		"D:/workspace/seaweedfs/test/h02.zip",
 //		"D:/workspace/seaweedfs/test/h03.zip",
 //		"D:/workspace/seaweedfs/test/h04.zip",
@@ -39,34 +39,35 @@ public class TestUpload {
 		UploadConfig conf = new UploadConfig();
 		conf.setUniSource("KelpTesting");
 //		conf.setApi("http://apis.qianbao.com/basicservice/v1/intranet/filer");
-		conf.setApi("http://dev-seaweed.qianbao-inc.com/filer");
+//		conf.setApi("http://dev-seaweed.qianbao-inc.com/filer");
 //		conf.setApi("http://seaweed.qianbao-inc.com/filer");
 //		conf.setApi("http://192.168.1.182:9330/filer");
 //		conf.setApi("http://192.168.1.182:9430/cdn/apk.qianbaoyidai.com");
 //		conf.setApi("http://sit-apis.qianbao.com/basicservice/v1/intranet/cdn/apk.borrowfund.com");
+		conf.setApi("http://test-img7.qianbao.com/filer");
 		conf.setSync(true);
 		conf.setRootFolder("/public/test/");
 		conf.setMaxBytesSize(6 * 1024 * 1024);
 		final UploadService srv = new UploadService(conf, log);
 
-		Thread t = new Thread(){
-			public void run(){
-				test(srv);
-			}
-		};
-		t.start();
+//		Thread t = new Thread(){
+//			public void run(){
+//				test(srv);
+//			}
+//		};
+//		t.start();
 //		Thread t1 = new Thread(){
 //			public void run(){
 //				test1(srv);
 //			}
 //		};
 //		t1.start();
-//		Thread t2 = new Thread(){
-//			public void run(){
-//				test2(srv);
-//			}
-//		};
-//		t2.start();
+		Thread t2 = new Thread(){
+			public void run(){
+				test2(srv);
+			}
+		};
+		t2.start();
 //		Thread t3 = new Thread(){
 //			public void run(){
 //				test3(srv);
@@ -144,11 +145,17 @@ public class TestUpload {
 			// 如果配置是同步，则说明返回的结果无需进一步检查，直接返回。
 			return ret;
 		}
-		boolean finished = false;
-		while(!finished){
-			ret = srv.checkResult(info);
-			finished = ret.isFinished();
-		}
+		try {
+		    boolean finished = false;
+	        while(!finished){
+	            ret = srv.checkResult(info);
+	            finished = ret.isFinished();
+	            
+	            Thread.sleep(100);
+	        }
+		}catch(InterruptedException e) {
+            log.error(e.getMessage(), e);
+        }
 		return ret;
 	}
 	
@@ -239,7 +246,7 @@ public class TestUpload {
 				+"; "+ret.getStatus());
 		UploadFile[] fs = ret.getResult();
 		for(UploadFile f: fs){
-			log.debug("uploaded "+f.getFileUrl());
+			log.debug("uploaded: "+f.getFid()+" "+f.getFileUrl());
 		}
 	}
 }

@@ -16,7 +16,7 @@ public class UploadFile {
 	private byte[] bytes;
 	// 上传成功时返回的文件名称，如果上传前设置上传文件时将强制按照设置字符串命名上传文件
 	private String fileName;
-	
+	private String fid;        // 上传成功时返回的文件fid
 	private int status;        // 上传百分比，100为成功，其他为还未成功。
 	private String fileUrl;    // 上传成功时返回的文件url
 	private int size;          // 上传成功时返回的文件大小

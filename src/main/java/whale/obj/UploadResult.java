@@ -94,6 +94,7 @@ public class UploadResult {
 		for(int i=0,j=result.length; i<j; i++){
 			UploadFile local = result[i];
 			if(local.getFileName().equals(file.getFileName())){
+			    local.setFid(file.getFid());
 				local.setStatus(file.getStatus());
 				return;
 			}
