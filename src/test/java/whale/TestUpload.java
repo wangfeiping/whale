@@ -13,10 +13,11 @@ public class TestUpload {
 	private static UploadLoggerTestUtil log =
 			new UploadLoggerTestUtil();
 	
-	private static String path = "imgs/";
+	private static String path = "qianbaolife/";
 
 	private static String[] files = {
-		"D:/workspace/seaweedfs/test/t01.png",
+//		"/home/wang/Downloads/images/saturn.jpg",
+		"./docs/902633105.jpg",
 //		"D:/workspace/seaweedfs/test/t02.jpg",
 //		"D:/workspace/seaweedfs/test/t03.xlsx",
 //		"D:/workspace/seaweedfs/test/h01.zip"
@@ -37,15 +38,19 @@ public class TestUpload {
 	public static void main(String[] args){
 //		final UploadService srv = new UploadService(log);
 		UploadConfig conf = new UploadConfig();
-		conf.setUniSource("KelpTesting");
-//		conf.setApi("http://apis.qianbao.com/basicservice/v1/intranet/filer");
+		conf.setUniSource("WhaleTesting");
+		conf.setApi("http://apis.qianbao.com/basicservice/v1/intranet/filer");
 //		conf.setApi("http://dev-seaweed.qianbao-inc.com/filer");
 //		conf.setApi("http://seaweed.qianbao-inc.com/filer");
 //		conf.setApi("http://192.168.1.182:9330/filer");
 //		conf.setApi("http://192.168.1.182:9430/cdn/apk.qianbaoyidai.com");
 //		conf.setApi("http://sit-apis.qianbao.com/basicservice/v1/intranet/cdn/apk.borrowfund.com");
-		conf.setApi("http://test-img7.qianbao.com/filer");
+//		conf.setApi("http://test-img7.qianbao.com/filer");
+//		conf.setApi("https://apis.qianbao.com/basicservice/v1/filer");
+//		conf.setApi("http://sit-apis.qianbao.com/basicservice/v1/intranet/filer");
+//		conf.setApi("https://apis.qianbao.com/basicservice/v1/intranet/filer");
 		conf.setSync(true);
+//		conf.setSync(false);
 		conf.setRootFolder("/public/test/");
 		conf.setMaxBytesSize(6 * 1024 * 1024);
 		final UploadService srv = new UploadService(conf, log);
@@ -217,6 +222,8 @@ public class TestUpload {
 		try{
 			long start = System.currentTimeMillis();
 			UploadResult ret = srv.upload(info, ups);
+//			String fid = ret.getResult()[0].getFid();
+//			log.debug("ret fid: "+fid);
 			ret = syncCheck(srv, info, ret);
 			log("test2", start, ret);
 		}catch(Exception e){

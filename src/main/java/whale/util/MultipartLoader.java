@@ -131,7 +131,7 @@ public class MultipartLoader {
 			builder.addFormDataPart(
 					"upload_"+loader.getIndex(),
 					createFileKey(info,
-							loader.getFile().getFileName()),
+							"aa"),
 					RequestBody.create(MediaType.parse(
 							loader.getContentType()), tmp)
 					);

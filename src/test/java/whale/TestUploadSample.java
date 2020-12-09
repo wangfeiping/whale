@@ -9,12 +9,13 @@ public class TestUploadSample {
 	private static UploadLoggerTestUtil log =
 			new UploadLoggerTestUtil();
 	
-	private static String path = "apk/202005071549/";
-	private static String file = "C:/devtools/upload/apk/app-assistant-release.apk";
+	private static String path = "test/202006111453/";
+	private static String file = "/opt/backup/hyperledger-fabric-linux-amd64-2.1.1.tar.gz";
 	
 	public static void main(String[] args){
 //		final UploadService srv = new UploadService(log);
 		UploadConfig conf = new UploadConfig();
+		conf.setApi("http://172.26.121.115:9330/filer");
 		conf.setSync(true);
 		conf.setMaxBytesSize(12 * 1024 * 1024);
 		final UploadService srv = new UploadService(conf, log);
